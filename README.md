@@ -5,7 +5,7 @@
 To get started, clone the repo and spin up the compose:
 
 ```sh
-docker-compose up
+docker-compose run faker && docker-compose up
 ```
 
 You can tweak the environment variables in the `.env` file if for example port `27017` is already in use on your host or you want more documents:
