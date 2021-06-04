@@ -6,19 +6,11 @@ services:
         command: --seed ${SEED} --nb_docs ${NB_DOCS}
         volumes:
             - fake_data:/data
-        healthcheck:
-            test: bash -c "[ -f /data/fake_data.json ]"
-            interval: 10s
-            timeout: 10s
-            retries: 50
 
     mongodb:
         image: mongo
         ports:
             - "${HOST_PORT}:27017"
-        depends_on:
-            faker:
-                condition: service_healthy
         healthcheck:
             test: echo 'db.runCommand("ping").ok' | mongo localhost:${HOST_PORT}/test --quiet | grep 1
             interval: 5s
